@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import Navbar from '~/components/Navbar';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -26,20 +27,20 @@ function Header() {
                     </div>
                     <div className={cx('header-right')}>
                         <div className={cx('header-right__item')}>
-                            <a>
+                            <Link to="/login">
                                 <div className={cx('icon')}>
                                     <FontAwesomeIcon icon={faUser} />
                                 </div>
                                 <p>Tài khoản</p>
-                            </a>
+                            </Link>
                         </div>
                         <div className={cx('header-right__item')}>
-                            <a>
+                            <Link to="/cart">
                                 <div className={cx('icon')}>
                                     <FontAwesomeIcon icon={faCartShopping} />
                                 </div>
                                 <p>Giỏ hàng</p>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

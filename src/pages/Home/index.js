@@ -25,12 +25,14 @@ function Home() {
                                     totalSale={product.totalSale}
                                 />
                             );
+                            
                         })}
                     </div>
                 </div>
             </div>
         </div>
     );
+    
 }
 
 export default Home;

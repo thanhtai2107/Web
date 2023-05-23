@@ -1,0 +1,42 @@
+.checkout {
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    .formGroup {
+      margin-bottom: 20px;
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+  
+      input,
+      select {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+    }
+  
+    .confirmButton {
+    //   padding: 10px 20px;
+    //   background-color: #007bff;
+    //   color: #fff;
+    //   border: none;
+    //   cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #337ab7;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    }
+  }
+  
