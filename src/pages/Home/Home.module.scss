@@ -1,8 +1,20 @@
-.product-contain {
+.product-container {
+    border-top: 20px solid #ebecf0;
     text-align: center;
+    margin-top: 100px;
+    h1 {
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: 280px 280px 280px 280px;
+        justify-content: center;
+    }
 }
-.products {
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    justify-content: center;
+.blog-container {
+    border-top: 20px solid #ebecf0;
+    text-align: center;
+    margin-top: 30px;
 }

@@ -1,0 +1,22 @@
+.container {
+    border: 1px solid #e4ecf2;
+    box-shadow: 0 1px 6px 0 rgb(32, 33, 36, 0.28);
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .content {
+        text-align: left;
+        padding: 15px;
+    }
+    p {
+        // white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-weight: 400;
+        -webkit-line-clamp: 2;
+        line-height: 25px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+}

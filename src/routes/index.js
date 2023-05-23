@@ -1,6 +1,12 @@
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Login from '~/pages/Login';
+
+import AdminHome from '~/pages/Admin/Home/AdminHome';
+import List from '~/pages/Admin/List/List';
+import Single from '~/pages/Admin/Single/Single';
+import New from '~/pages/Admin/New/New';
+
 import Register from '~/pages/Register';
 import ForgotPassword from '~/pages/ForgotPassword';
 import Cart from '~/pages/Cart';
@@ -15,11 +21,18 @@ import BlogPage from '~/pages/BlogPage';
 import Equipment from '~/pages/Equipment';
 import Clothe from '~/pages/Clothe';
 
+
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
     { path: '/blog', component: BlogPage },
     { path: '/login', component: Login },
+
+    { path: '/admin', component: AdminHome, layout: null },
+    { path: '/user', component: List, layout: null },
+    { path: '/user:userId', component: Single, layout: null },
+    { path: 'user/new', component: New, layout: null },
+
     { path: '/register', component: Register },
     { path: '/forgot-password', component: ForgotPassword },
     { path: '/cart', component: Cart },
@@ -32,6 +45,7 @@ const publicRoutes = [
     { path: '/product/:productId', component: ProductDetail },
     { path: '/equipment', component: Equipment },
     { path: '/clothe', component: Clothe },
+
 ];
 
 const privateRoutes = [];
