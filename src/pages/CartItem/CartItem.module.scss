@@ -1,0 +1,50 @@
+.cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .productInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .name {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .price {
+    font-size: 14px;
+    color: #888;
+    margin-right: 10px;
+  }
+  
+  .quantity {
+    font-size: 16px;
+    color: #888;
+    margin-right: 15px;
+  }
+  .quantityButton {
+    background-color: #ccc;
+    color: #000000;
+    border: none;
+    padding: 10px, 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .total {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .removeButton {
+    background-color: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+  }
+  

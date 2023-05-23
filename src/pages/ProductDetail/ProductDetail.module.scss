@@ -1,0 +1,86 @@
+.productDetailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .productImages {
+    position: relative;
+  
+    .mainImage {
+      width: 50%; // Điều chỉnh kích thước ảnh chính theo ý muốn
+    }
+  
+    .smallImages {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+  
+      .smallImage {
+        width: 50px; // Điều chỉnh kích thước ảnh nhỏ theo ý muốn
+        margin-right: 5px;
+        cursor: pointer;
+  
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .productOptions {
+      display: flex;
+      margin-bottom: 10px;
+
+      .sizeSelector,
+      .colorSelector {
+        margin-right: 20px;
+      }
+    }
+
+    .productButtons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .productPrice {
+      margin-bottom: 10px;
+      font-weight: bold;
+
+      .salePrice {
+        color: red;
+      }
+    }
+  }
+
+  .productReview,
+  .relatedProducts {
+    margin-bottom: 20px;
+  }
+
+  @keyframes slideShow {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-100%);
+    }
+    40% {
+      transform: translateX(-200%);
+    }
+    60% {
+      transform: translateX(-300%);
+    }
+    80% {
+      transform: translateX(-400%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}

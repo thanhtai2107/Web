@@ -2,6 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes';
 import { DefaultLayout } from './components/Layout';
 import { Fragment } from 'react';
+import './pages/Cart/Cart.module.scss';
+import './pages/CartItem/CartItem.module.scss';
+
+
 function App() {
     return (
         <Router>
@@ -32,5 +36,5 @@ function App() {
         </Router>
     );
 }
-
 export default App;
+
