@@ -26,6 +26,7 @@ function Home() {
                                     totalSale={product.totalSale}
                                 />
                             );
+                            
                         })}
                     </div>
                 </div>
@@ -36,6 +37,7 @@ function Home() {
             </div>
         </div>
     );
+    
 }
 
 export default Home;
