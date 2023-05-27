@@ -1,131 +1,277 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ProductDetail.module.scss';
-import { Button } from '@mui/material';
-
-const formatCurrency = (value) => {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-};
-
-const products = [
-    {
-        id: 1,
-        name: 'Nike Air Mercurial Blast',
-        imageUrls: [
-            'https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg',
-            'https://product.hstatic.net/1000061481/product/nms03732_81859298d28f4ce491013288fcebd417_1024x1024.jpg',
-            'https://product.hstatic.net/1000061481/product/nms03736_d218fc1e4b484ccb8cf78a5404fbfda7_1024x1024.jpg',
-            'https://product.hstatic.net/1000061481/product/nms03733_83e19b2ad3754e47b643396b587bd9f8_1024x1024.jpg',
-            'https://product.hstatic.net/1000061481/product/nms03731_b1d5067c2792476b8237bdaa5c461023_1024x1024.jpg',
-        ],
-        price: 599000,
-        salePrice: 479000,
-        description:
-            '"MDS - MERCURIAL DREAM SPEED" - bộ sưu tập dành cho các cầu thủ chạy nhanh nhất thế giới đã cho ra mắt gam màu tiếp theo. Đây đã là Chapter 6 của bộ sưu tập này, Và phối màu Nike chọn lần này là Cobalt Bliss/Black/Punch Chaud rất phù hợp với ngày lễ tình nhân Valentine 14/2 sắp đến gần.',
-        brand: 'Nike',
-        sizes: ['39', '40', '41', '42', '43'],
-        colors: ['Trắng', 'Đen', 'Hồng'],
-        rating: 4.5,
-    },
-    // ...
-];
-
-const getProductById = (productId) => {
-    return products.find((product) => product.id === Number(productId));
-};
+import { FaStar } from 'react-icons/fa';
 
 const ProductDetail = () => {
-    const { productId } = useParams();
-    const product = getProductById(productId);
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [rating, setRating] = useState(0);
+    const [hoverRating, setHoverRating] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [content, setContent] = useState('');
+    const [promoPrice, setPromoPrice] = useState(0); // Thêm state cho giá khuyến mãi
 
-    const handleSizeChange = (e) => {
-        setSelectedSize(e.target.value);
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
     };
 
-    const handleColorChange = (e) => {
-        setSelectedColor(e.target.value);
+    const handleRating = (value) => {
+        setRating(value);
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex === product.imageUrls.length - 1 ? 0 : prevIndex + 1));
-        }, 3000);
+    const handleHoverRating = (value) => {
+        setHoverRating(value);
+    };
 
-        return () => {
-            clearInterval(interval);
-        };
-    }, [product.imageUrls]);
-
-    if (!product) {
-        return <p>Không tìm thấy sản phẩm</p>;
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Thực hiện xử lý với dữ liệu của form
+    };
 
     return (
-        <div className={styles.productDetailContainer}>
-            <div className={styles.productImages}>
-                <img
-                    src={product.imageUrls[currentImageIndex]}
-                    alt={`Chi tiết ${currentImageIndex + 1}`}
-                    className={styles.mainImage}
-                />
-            </div>
-            <div className={styles.productImages}>
-                <div className={styles.smallImages}>
-                    {product.imageUrls.map((image, index) => (
-                        <img key={index} src={image} alt={`Chi tiết ${index + 1}`} className={styles.smallImage} />
-                    ))}
-                </div>
-            </div>
-            <div className={styles.productInfo}>
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-                <div className={styles.productOptions}>
-                    <div className={styles.sizeSelector}>
-                        <label htmlFor="size">Kích thước:</label>
-                        <select id="size" value={selectedSize} onChange={handleSizeChange}>
-                            {product.sizes.map((size) => (
-                                <option key={size} value={size}>
-                                    {size}
-                                </option>
-                            ))}
-                        </select>
+        <>
+            <div className={`${styles['small-container']} ${styles['single-product']}`}>
+                <div className={styles['row']}>
+                    <div className={styles['col-2']}>
+                        <img
+                            src="https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg"
+                            width="80%"
+                            id="1"
+                            alt="Product"
+                        />
                     </div>
-                    <div className={styles.colorSelector}>
-                        <label htmlFor="color">Màu sắc:</label>
-                        <select id="color" value={selectedColor} onChange={handleColorChange}>
-                            {product.colors.map((color) => (
-                                <option key={color} value={color}>
-                                    {color}
-                                </option>
-                            ))}
+                    <div className={styles['col-2']} style={{ textAlign: 'left' }}>
+                        <h2>Giày bóng đá Nike Tiempo Legend 9</h2>
+                        <h4>
+                            Giá: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(599000)}
+                        </h4>
+                        <h4>
+                            <span className={styles['promo-price']}>
+                                Giá khuyến mãi:{' '}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(479000)}
+                            </span>
+                        </h4>{' '}
+                        {/* Hiển thị giá khuyến mãi */}
+                        <select name="" id="">
+                            <option value="">Lựa chọn size</option>
+                            <option value="">38</option>
+                            <option value="">39</option>
+                            <option value="">40</option>
+                            <option value="">41</option>
+                            <option value="">42</option>
+                            <option value="">43</option>
+                            <option value="">44</option>
                         </select>
+                        <div className={styles.quantityContainer}>
+                            <input
+                                type="number"
+                                value={quantity}
+                                min="1"
+                                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            />
+                            <br />
+                            <Link to="/checkout">
+                                <button className={styles['btn']}>Mua ngay</button>
+                            </Link>
+                            <Link to="/cart">
+                                <button className={styles['btn']}>Thêm vào giỏ hàng</button>
+                            </Link>
+                            <h3>
+                                Chi tiết sản phẩm
+                                <i className="fa fa-indent" />
+                            </h3>
+                            <p>
+                                Thông số kỹ thuật:
+                                <br />
+                                Cầu thủ nổi tiếng đại diện: Kevin De Bruyne, Harry Kane và Mason Greendwood....
+                                <br />
+                                Form giày: Phù hợp form chân thon/chân bè.
+                                <br />
+                                Công nghệ: Cổ thun Flyknit, ACC (đá ở cả điều kiện ẩm ướt và khô ráo).
+                                <br />
+                                Kiểu dáng: Đế FG (cỏ tự nhiên).
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.productButtons}>
-                    <Link to="/cart">
-                        <Button variant="contained">Thêm vào giỏ hàng</Button>
-                    </Link>
-                    <Link to="/checkout">
-                        <Button variant="contained">Mua ngay</Button>
-                    </Link>
+            </div>
+            <div className={styles['review-product']}>
+                <h2>Đánh giá sản phẩm</h2>{' '}
+                <div className={styles['review-product__container']}>
+                    {' '}
+                    <div id="myDropdown" className={styles['review-product__form']}>
+                        {' '}
+                        <form id="form" onSubmit={handleSubmit}>
+                            {' '}
+                            <div className={styles['form-group']}>
+                                <label htmlFor="name">Tên</label>{' '}
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Tên của bạn"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </div>
+                            <div className={styles['form-group']}>
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Email của bạn"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className={styles['form-group']}>
+                                <label>Đánh giá</label>
+                                <div className={styles['rating-stars-horizontal']}>
+                                    {[...Array(5)].map((_, index) => {
+                                        const starValue = index + 1;
+                                        return (
+                                            <label key={index}>
+                                                <input
+                                                    type="radio"
+                                                    name="rating"
+                                                    value={starValue}
+                                                    onClick={() => handleRating(starValue)}
+                                                />
+                                                <FaStar
+                                                    className={styles['star']}
+                                                    color={starValue <= (hoverRating || rating) ? '#ffc107' : '#e4e5e9'}
+                                                    onMouseEnter={() => handleHoverRating(starValue)}
+                                                    onMouseLeave={() => handleHoverRating(0)}
+                                                />
+                                            </label>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                            <div className={styles['form-group']}>
+                                <label htmlFor="content">Nội dung</label>
+                                <textarea
+                                    id="content"
+                                    cols="60"
+                                    rows="8"
+                                    placeholder="Nội dung nhận xét của bạn"
+                                    value={content}
+                                    onChange={(e) => setContent(e.target.value)}
+                                />
+                            </div>
+                            <button id="send-review" type="submit">
+                                Gửi đánh giá
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div className={styles.productPrice}>
-                <span>Giá: {formatCurrency(product.price)} VNĐ</span>
-                {product.salePrice && <span className="salePrice">{formatCurrency(product.salePrice)} VNĐ</span>}
+
+            <div className={styles['small-container']}>
+                <div className={`${styles['row']} ${styles['row-2']}`}>
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
             </div>
-            <div className={styles.productReview}>
-                <h3>Đánh giá và nhận xét</h3>
-                {/* Hiển thị danh sách đánh giá và nhận xét */}
+
+            <div className={styles['small-container']}>
+                <div className={styles['row']}>
+                    <div className={styles['col-4']}>
+                        <img
+                            src="http://product.hstatic.net/1000061481/product/fba0ad8effda_476134815606435f933d8df38f88c897_1024x1024.jpeg"
+                            alt=""
+                        />
+                        <h4>NIKE PHANTOM GT 2 ACADEMY</h4>
+                        <div className={styles['rating']}>
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                        </div>
+                        <p>
+                            Giá:{' '}
+                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2100000)}
+                            <br />
+                            <span className={styles['promo-price']}>
+                                Giá khuyến mãi:{' '}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(1900000)}
+                            </span>
+                        </p>
+                    </div>
+                    <div className={styles['col-4']}>
+                        <img
+                            src="http://product.hstatic.net/1000061481/product/anh_sp_add_web_joma-02-02-02-01-01_db9bebe9a7044453b1e756337d74a28f_1024x1024.jpg"
+                            alt=""
+                        />
+                        <h4>NIKE PHANTOM GX ACADEMY</h4>
+                        <div className={styles['rating']}>
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                        </div>
+                        <p>
+                            Giá:{' '}
+                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2250000)}
+                            <br />
+                            <span className={styles['promo-price']}>
+                                Giá khuyến mãi:{' '}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2000000)}
+                            </span>
+                        </p>
+                    </div>
+                    <div className={styles['col-4']}>
+                        <img
+                            src="http://product.hstatic.net/1000061481/product/0c44bcf90c18d6468f09_ec75bfed77ec417791b8db718206bb8a_1024x1024.jpg"
+                            alt=""
+                        />
+                        <h4>NIKE REACT PHANTOM GX PRO</h4>
+                        <div className={styles['rating']}>
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                        </div>
+                        <p>
+                            Giá:{' '}
+                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2800000)}
+                            <br />
+                            <span className={styles['promo-price']}>
+                                Giá khuyến mãi:{' '}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2600000)}
+                            </span>
+                        </p>
+                    </div>
+                    <div className={styles['col-4']}>
+                        <img
+                            src="http://product.hstatic.net/1000061481/product/9cb1b416a82142b381fd353e9b199acf_e16276275c4b4ba3a315f9d452a254cd_1024x1024.jpeg"
+                            alt=""
+                        />
+                        <h4>NIKE PHANTOM GT 2 PRO</h4>
+                        <div className={styles['rating']}>
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#ffc107" />
+                            <FaStar className={styles['star']} color="#e4e5e9" />
+                        </div>
+                        <p>
+                            Giá:{' '}
+                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3300000)}
+                            <br />
+                            <span className={styles['promo-price']}>
+                                Giá khuyến mãi:{' '}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3100000)}
+                            </span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div className={styles.relatedProducts}>
-                <h3>Sản phẩm liên quan</h3>
-                {/* Hiển thị các sản phẩm liên quan */}
-            </div>
-        </div>
+        </>
     );
 };
 

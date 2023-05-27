@@ -10,9 +10,27 @@ const formatCurrency = (value) => {
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Sản phẩm 1', price: 190000, quantity: 2 },
-        { id: 2, name: 'Sản phẩm 2', price: 150000, quantity: 1 },
-        { id: 3, name: 'Sản phẩm 3', price: 220000, quantity: 3 },
+        {
+            id: 1,
+            name: 'Nike Air Mercurial Blast',
+            price: 479000,
+            quantity: 1,
+            image: 'https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg',
+        },
+        {
+            id: 4,
+            name: 'GRANDSPORT ÁO THI ĐẤU ĐT VIỆT NAM SÂN NHÀ 2023',
+            price: 1390000,
+            quantity: 1,
+            image: 'https://product.hstatic.net/1000061481/product/screenshot_99_a1073bfe6c18453fbacad7ee9f3eb9d1_1024x1024.png',
+        },
+        {
+            id: 7,
+            name: 'BALO MINI SPORT',
+            price: 99000,
+            quantity: 1,
+            image: 'https://product.hstatic.net/1000061481/product/nms05921282134-2_3f1ac62c313541fb936dcd4197b45899_1024x1024.jpg',
+        },
     ]);
 
     const removeItem = (itemId) => {
@@ -41,7 +59,7 @@ const Cart = () => {
     return (
         <div className={styles.cart}>
             <h1>Giỏ hàng</h1>
-            {cartItems.map((item) => (
+            {cartItems.map((item, index) => (
                 <CartItem
                     key={item.id}
                     item={{
@@ -50,6 +68,7 @@ const Cart = () => {
                     }}
                     onRemove={removeItem}
                     onUpdateQuantity={updateQuantity}
+                    index={index + 1} // Thêm số thứ tự tại đây
                 />
             ))}
             <div className={styles.total}>

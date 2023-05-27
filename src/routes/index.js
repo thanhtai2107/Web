@@ -20,7 +20,7 @@ import ProductDetail from '~/pages/ProductDetail';
 import BlogPage from '~/pages/BlogPage';
 import Equipment from '~/pages/Equipment';
 import Clothe from '~/pages/Clothe';
-
+import Shoes from '~/pages/Product/Shoes';
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -42,10 +42,10 @@ const publicRoutes = [
     { path: '/nike', component: Nike },
     { path: '/mizuno', component: Mizuno },
     { path: '/adidas', component: Adidas },
-    { path: '/product/:productId', component: ProductDetail },
+    { path: '/product/:id', component: ProductDetail },
     { path: '/equipment', component: Equipment },
     { path: '/clothe', component: Clothe },
-
+    { path: '/shoes', component: Shoes },
 ];
 
 const privateRoutes = [];
