@@ -6,7 +6,7 @@ import { DriveFolderUploadOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-function New() {
+function NewProduct() {
     const [file, setFile] = useState('');
     return (
         <div className={cx('new')}>
@@ -14,7 +14,7 @@ function New() {
             <div className={cx('newContainer')}>
                 <Navbar />
                 <div className={cx('top')}>
-                    <h1>Add new user</h1>
+                    <h1>Add new Product</h1>
                 </div>
                 <div className={cx('bottom')}>
                     <div className={cx('left')}>
@@ -41,34 +41,28 @@ function New() {
                                 />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Username</label>
-                                <input type="text" placeholder="Username" />
+                                <label>Product name</label>
+                                <input type="text" placeholder="Product name" />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Password</label>
-                                <input type="password" />
+                                <label>Discription</label>
+                                <input type="text" placeholder="Discription" />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Full name</label>
-                                <input type="text" placeholder="Full name" />
+                                <label>Price</label>
+                                <input type="text" placeholder="Price" />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Email</label>
+                                <label>Quantity</label>
                                 <input type="text" placeholder="Email" />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Username</label>
-                                <input type="text" placeholder="Username" />
+                                <label>Category</label>
+                                <input type="text" placeholder="Category" />
                             </div>
                             <div className={cx('formInput')}>
-                                <label>Phone number</label>
-                                <input type="text" placeholder="+0343453" />
+                                <button>Send</button>
                             </div>
-                            <div className={cx('formInput')}>
-                                <label>Address</label>
-                                <input type="text" placeholder="Address" />
-                            </div>
-                            <button>Send</button>
                         </form>
                     </div>
                 </div>
@@ -77,4 +71,4 @@ function New() {
     );
 }
 
-export default New;
+export default NewProduct;
