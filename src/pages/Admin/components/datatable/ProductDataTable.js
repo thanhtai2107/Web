@@ -10,9 +10,13 @@ const columns: GridColDef[] = [
     { field: 'firstName', headerName: 'First name', width: 130 },
     { field: 'lastName', headerName: 'Last name', width: 130 },
     {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
+        field: 'address',
+        headerName: 'Address',
+        width: 90,
+    },
+    {
+        field: 'phone',
+        headerName: 'Phone',
         width: 90,
     },
     {
@@ -25,7 +29,7 @@ const columns: GridColDef[] = [
             return (
                 <>
                     <span>{params.row.lastName}</span>
-                    <p>{params.row.age}</p>
+                    <p>{params.row.firstName}</p>
                 </>
             );
         },
@@ -40,7 +44,7 @@ const columns: GridColDef[] = [
             return (
                 <>
                     <div className={cx('cellAction')}>
-                        <div className={cx('viewButton')}>View</div>
+                        <div className={cx('viewButton')}>Update</div>
                         <div className={cx('deleteButton')}>Delete</div>
                     </div>
                 </>
@@ -50,7 +54,7 @@ const columns: GridColDef[] = [
 ];
 
 const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    { id: 1, lastName: 'Snow', firstName: 'Jon', address: 'Linh Trung', phone: '01232132' },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
     { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
@@ -60,7 +64,7 @@ const rows = [
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
-function DataTable() {
+function ProductTable() {
     return (
         <div className={cx('datatable')}>
             <DataGrid
@@ -78,4 +82,4 @@ function DataTable() {
     );
 }
 
-export default DataTable;
+export default ProductTable;

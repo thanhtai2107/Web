@@ -3,5 +3,10 @@
     width: 100%;
     .listContainer {
         flex: 6;
+
+        .addButton {
+            margin-left: 20px;
+            margin-top: 20px;
+        }
     }
 }

@@ -10,6 +10,7 @@ import {
     ProductionQuantityLimits,
     Settings,
 } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function SideBar() {
@@ -29,15 +30,23 @@ function SideBar() {
                     <p className={cx('title')}>List</p>
                     <li>
                         <AccountCircle className={cx('icon')} />
-                        <span>User</span>
+
+                        <Link to="/admin/user">
+                            {' '}
+                            <span>User</span>
+                        </Link>
                     </li>
                     <li>
                         <ProductionQuantityLimits className={cx('icon')} />
-                        <span>Product</span>
+                        <Link to="/admin/product">
+                            <span>Product</span>
+                        </Link>
                     </li>
                     <li>
                         <LibraryBooks className={cx('icon')} />
-                        <span>Order</span>
+                        <Link to="/admin/product">
+                            <span>Order</span>
+                        </Link>
                     </li>
                     <p className={cx('title')}>Service</p>
                     <li>
