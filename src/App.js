@@ -5,7 +5,6 @@ import { Fragment } from 'react';
 import './pages/Cart/Cart.module.scss';
 import './pages/CartItem/CartItem.module.scss';
 
-
 function App() {
     return (
         <Router>
@@ -18,15 +17,25 @@ function App() {
                         } else if (route.layout === null) {
                             Layout = Fragment;
                         }
+                        let Private = Fragment;
+                        if (route.private) {
+                            Private = route.private;
+                        }
+                        let role = '';
+                        if (route.role) {
+                            role = route.role;
+                        }
                         const Page = route.component;
                         return (
                             <Route
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
+                                    <Private>
+                                        <Layout>
+                                            <Page />
+                                        </Layout>
+                                    </Private>
                                 }
                             />
                         );
@@ -37,4 +46,3 @@ function App() {
     );
 }
 export default App;
-

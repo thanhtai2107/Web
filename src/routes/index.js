@@ -3,9 +3,7 @@ import Following from '~/pages/Following';
 import Login from '~/pages/Login';
 
 import AdminHome from '~/pages/Admin/Home/AdminHome';
-import List from '~/pages/Admin/List/List';
 import Single from '~/pages/Admin/Single/Single';
-import New from '~/pages/Admin/New/New';
 
 import Register from '~/pages/Register';
 import ForgotPassword from '~/pages/ForgotPassword';
@@ -20,7 +18,15 @@ import ProductDetail from '~/pages/ProductDetail';
 import BlogPage from '~/pages/BlogPage';
 import Equipment from '~/pages/Equipment';
 import Clothe from '~/pages/Clothe';
+
 import Shoes from '~/pages/Product/Shoes';
+
+import { PrivateRoute } from './privateRouter';
+import ProductList from '~/pages/Admin/List/ProductList';
+import List from '~/pages/Admin/List/UserList';
+import NewUser from '~/pages/Admin/New/NewUser';
+import NewProduct from '~/pages/Admin/New/NewProduct';
+
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -28,10 +34,12 @@ const publicRoutes = [
     { path: '/blog', component: BlogPage },
     { path: '/login', component: Login },
 
-    { path: '/admin', component: AdminHome, layout: null },
-    { path: '/user', component: List, layout: null },
-    { path: '/user:userId', component: Single, layout: null },
-    { path: 'user/new', component: New, layout: null },
+    { path: '/admin', component: AdminHome, layout: null, private: PrivateRoute, role: 'ADMIN' },
+    { path: '/admin/user', component: List, layout: null },
+    { path: '/admin/user:userId', component: Single, layout: null },
+    { path: '/admin/user/new', component: NewUser, layout: null },
+    { path: '/admin/product', component: ProductList, layout: null },
+    { path: '/admin/product/new', component: NewProduct, layout: null },
 
     { path: '/register', component: Register },
     { path: '/forgot-password', component: ForgotPassword },
@@ -45,7 +53,9 @@ const publicRoutes = [
     { path: '/product/:id', component: ProductDetail },
     { path: '/equipment', component: Equipment },
     { path: '/clothe', component: Clothe },
+
     { path: '/shoes', component: Shoes },
+
 ];
 
 const privateRoutes = [];
