@@ -1,42 +1,247 @@
-.checkout {
-    h2 {
-      margin-bottom: 20px;
-    }
-  
-    .formGroup {
-      margin-bottom: 20px;
-  
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-  
-      input,
-      select {
-        width: 100%;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-      }
-    }
-  
-    .confirmButton {
-    //   padding: 10px 20px;
-    //   background-color: #007bff;
-    //   color: #fff;
-    //   border: none;
-    //   cursor: pointer;
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #337ab7;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    margin-bottom: 20px;
-    }
-  }
-  
+
+.checkout-payment {
+  height: 100%;
+}
+
+.checkout-payment ul {
+  height: 40px;
+  list-style-type: none;
+  background: #f9f9f9;
+  text-align: left;
+  padding-left: 50px;
+  margin-top: 0px;
+}
+
+.checkout-payment ul li {
+  color: black;
+  display: inline-table;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.checkout-payment ul .space {
+  width: 5px;
+}
+
+.checkout-table {
+  padding-left: 60px;
+  padding-right: 40px;
+  height: auto;
+  width: 100%;
+}
+
+.checkout-left {
+  padding-left: 50px;
+}
+
+.checkout-left .checkout-section {
+  width: 55%;
+  margin-top: -10px;
+}
+
+.checkout-section-text-content {
+  color: grey;
+  font-size: 14px;
+}
+
+.checkout-section-text-content a {
+  text-decoration: none;
+  color: black;
+}
+
+.checkout-fieldset input {
+  width: 90%;
+  height: 40px;
+  padding-left: 10px;
+  border: 1px solid gainsboro;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.checkout-fieldset textarea {
+  width: 90%;
+  padding-left: 10px;
+  border-radius: 1px solid gainsboro;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.checkout-h3 {
+  margin-bottom: 5px;
+}
+
+.checkout-section-payments {
+  padding-bottom: 20px;
+}
+
+.checkout-input-radio {
+  font-size: 10px;
+}
+
+.checkout-footer-previous {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  text-align: left;
+}
+
+.checkout-section-footer .checkout-submit {
+  height: 50px;
+  width: 90%;
+  background: #0a9a73;
+  text-align: center;
+  line-height: 40px;
+  color: #ffffff;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  margin-left: 0px;
+  font-size: 15px;
+}
+
+.checkout-right .checkout-right-title {
+  margin-top: -110px;
+}
+
+.checkout-product-image {
+  height: 90px;
+  width: 90px;
+}
+
+.checkout-image {
+  width: 90px;
+  height: 90px;
+}
+
+.checkout-product-image {
+  width: 90px;
+  height: 90px;
+}
+
+.checkout-product-quantity {
+  text-align: right;
+}
+
+.checkout-price {
+  text-align: right;
+}
+
+.checkout-name {
+  width: 250px;
+  margin-left: -20px;
+}
+
+.checkout-info {
+  padding-left: 20px;
+}
+
+.checkout-discount {
+  padding-top: 20px;
+  padding-left: 20px;
+  border-top: 1px solid cadetblue;
+  padding-bottom: 20px;
+}
+
+.checkout-total {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  border-top: 1px solid cadetblue;
+}
+
+.checkout-field-input {
+  width: 420px;
+  height: 49px;
+  border: 1px solid gainsboro;
+  padding-right: 10px;
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.checkout-discount .checkout-field-input-btn {
+  font-size: 15px;
+  width: 120px;
+  height: 50px;
+  line-height: 40px;
+  border: 1px solid gainsboro;
+  background-color: #0a9a73;
+  margin-left: 10px;
+  padding-bottom: 0px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.checkout-sum {
+  border-bottom: 1px solid cadetblue;
+}
+
+.checkout-total-subtotal {
+  margin-top: -20px;
+  padding-bottom: 10px;
+  line-height: 30px;
+}
+
+.checkout-total-name {
+  padding-left: 0;
+  text-align: left;
+  color: #4b4b4b;
+}
+
+.checkout-total-price {
+  padding-right: 0px;
+  text-align: right;
+  color: #4b4b4b;
+}
+
+.checkout-bot {
+  padding-left: 0px;
+}
+
+.checkout-footer-table {
+  padding-top: 15px;
+}
+
+.checkout-payment {
+  margin-left: -40px;
+  text-align: left;
+  color: black;
+}
+
+.checkout-payment-due {
+  padding-right: 0px;
+  text-align: right;
+  color: black;
+}
+
+.checkout-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-footer-container {
+  background-color: #262626;
+}
+
+.checkout-footer-column {
+  float: left;
+  clear: right;
+  margin-left: 84px;
+  width: 26%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #a5a5a5;
+}
+
+.checkout-footer-column h2 {
+  color: #f1f1f1;
+}
+
+.checkout-col-center ul {
+  padding: 0;
+}
+
+.checkout-col-center ul li {
+  padding-bottom: 10px;
+  color: #a5a5a5;
+}

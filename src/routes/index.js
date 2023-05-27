@@ -18,11 +18,15 @@ import ProductDetail from '~/pages/ProductDetail';
 import BlogPage from '~/pages/BlogPage';
 import Equipment from '~/pages/Equipment';
 import Clothe from '~/pages/Clothe';
+
+import Shoes from '~/pages/Product/Shoes';
+
 import { PrivateRoute } from './privateRouter';
 import ProductList from '~/pages/Admin/List/ProductList';
 import List from '~/pages/Admin/List/UserList';
 import NewUser from '~/pages/Admin/New/NewUser';
 import NewProduct from '~/pages/Admin/New/NewProduct';
+
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -46,9 +50,12 @@ const publicRoutes = [
     { path: '/nike', component: Nike },
     { path: '/mizuno', component: Mizuno },
     { path: '/adidas', component: Adidas },
-    { path: '/product/:productId', component: ProductDetail },
+    { path: '/product/:id', component: ProductDetail },
     { path: '/equipment', component: Equipment },
     { path: '/clothe', component: Clothe },
+
+    { path: '/shoes', component: Shoes },
+
 ];
 
 const privateRoutes = [];

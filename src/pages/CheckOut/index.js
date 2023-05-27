@@ -1,93 +1,229 @@
 import React, { useState } from 'react';
-import styles from '~/pages/CheckOut/CheckOut.module.scss';
 import { Link } from 'react-router-dom';
+import styles from './CheckOut.module.scss';
 import { Button } from '@mui/material';
 
 const Checkout = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        address: '',
-        phone: '',
-        paymentMethod: '',
-    });
+    const [discountCode, setDiscountCode] = useState('');
 
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+    const handleDiscountCodeChange = (event) => {
+        setDiscountCode(event.target.value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Xử lý đơn hàng
-        // ...
+    const handleDiscountCodeSubmit = (event) => {
+        event.preventDefault();
+        // Xử lý mã giảm giá tại đây
     };
 
     return (
-        <div className={styles.checkout}>
-            <h2>Form Thông tin Khách hàng</h2>
-            <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                    <label htmlFor="name">Tên:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="address">Địa chỉ:</label>
-                    <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="phone">Số điện thoại:</label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="paymentMethod">Phương thức thanh toán:</label>
-                    <select
-                        id="paymentMethod"
-                        name="paymentMethod"
-                        value={formData.paymentMethod}
-                        onChange={handleInputChange}
-                        required
-                    >
-                        <option value="">Chọn phương thức thanh toán</option>
-                        <option value="creditCard">Thẻ tín dụng</option>
-                        <option value="bankTransfer">Chuyển khoản ngân hàng</option>
-                        <option value="eWallet">Ví điện tử</option>
-                        <option value="cod">COD (thanh toán khi nhận hàng)</option>
-                    </select>
-                </div>
-                {/* <div className={styles.confirmOrder}>
-                    <button className={styles.confirmButton} onClick={handleSubmit}> */}
-                {/* <Link to="/orderconfirmation">Xác nhận đơn hàng</Link> */}
-                <Link to="/orderconfirmation">
-                    {' '}
-                    <Button variant="outlined">Xác nhận đơn hàng</Button>
-                </Link>
-                {/* <Button variant="outlined">Xác nhận đơn hàng</Button> */}
-                {/* </button> */}
-                {/* </div> */}
-            </form>
+        <div className={styles['checkout-payment']}>
+            <table>
+                <tbody>
+                    <tr>
+                        <td className={styles['checkout-left']} width="50%">
+                            <div className={styles['checkout-section']}>
+                                <div className={styles['checkout-section-header']}>
+                                    <h2 className={styles['checkout-section-title']}>Thông tin giao hàng</h2>
+                                </div>
+                                <div className={styles['checkout-section-text']}>
+                                    <p className={styles['checkout-section-text-content']}>
+                                        Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={styles['checkout-fieldset']}>
+                                <input type="text" placeholder="Họ và tên" />
+                                <input type="email" placeholder="Email" />
+                                <input type="tel" placeholder="Số điện thoại" />
+                                <textarea cols="50" rows="4" placeholder="Địa chỉ giao hàng"></textarea>
+                            </div>
+                            <div className={styles['checkout-section-shipping']}>
+                                <div className={styles['checkout-shipping-header']}>
+                                    <h3>Phương thức vận chuyển</h3>
+                                </div>
+                                <div className={styles['checkout-content-box']}>
+                                    <input name="type-shipping" type="radio" value="Giao hàng tận nơi" id="shipping1" />
+                                    <label htmlFor="shipping1" className={styles['radio-label']}>
+                                        Giao hàng tận nơi
+                                    </label>
+                                </div>
+                            </div>
+                            <div className={styles['checkout-section-payments']}>
+                                <div className={styles['checkout-payments-header']}>
+                                    <h3>Hình thức thanh toán</h3>
+                                </div>
+                                <div className={styles['checkout-payments']}>
+                                    <div className={styles['checkout-control-radio']}>
+                                        <input
+                                            name="choose"
+                                            className={styles['checkout-control-radio-input']}
+                                            type="radio"
+                                            id="payment1"
+                                        />
+                                        <label htmlFor="payment1" className={styles['checkout-control-radio-label']}>
+                                            Tiền mặt
+                                        </label>
+                                    </div>
+                                    <div className={styles['checkout-control-radio']}>
+                                        <input
+                                            name="choose"
+                                            className={styles['checkout-control-radio-input']}
+                                            type="radio"
+                                            id="payment2"
+                                        />
+                                        <label htmlFor="payment2" className={styles['checkout-control-radio-label']}>
+                                            Chuyển khoản
+                                        </label>
+                                    </div>
+                                    <div className={styles['checkout-control-radio']}>
+                                        <input
+                                            name="choose"
+                                            className={styles['checkout-control-radio-input']}
+                                            type="radio"
+                                            id="payment3"
+                                        />
+                                        <label htmlFor="payment3" className={styles['checkout-control-radio-label']}>
+                                            Ship code
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['checkout-section-footer']}>
+                                <Link to="/orderconfirmation">
+                                    <Button variant="contained" type="submit" className={styles['submit']}>
+                                        <span className={styles['btn-next']}>Đặt hàng</span>
+                                    </Button>
+                                </Link>
+                            </div>
+                        </td>
+                        <td className={styles['checkout-right']}>
+                            <div className={styles['checkout-right-title']}>
+                                <h2 className={styles['checkout-title']}>Thông tin đơn hàng</h2>
+                            </div>
+                            <div className={styles['checkout-product-info']}>
+                                <table className={styles['checkout-info']}>
+                                    <tbody>
+                                        <tr>
+                                            <td className={styles['checkout-image']}>
+                                                <img
+                                                    className={styles['checkout-product-image']}
+                                                    src="https://product.hstatic.net/1000061481/product/screenshot_99_a1073bfe6c18453fbacad7ee9f3eb9d1_1024x1024.png"
+                                                    alt="Sản phẩm 1"
+                                                    style={{ width: '100px', height: '100px' }}
+                                                />
+                                            </td>
+                                            <td className={styles['checkout-name']}>
+                                                <span className={styles['checkout-product-name']}>
+                                                    GRANDSPORT ÁO THI ĐẤU ĐT VIỆT NAM SÂN NHÀ 2023
+                                                </span>
+                                                <br />
+                                                <span className={styles['checkout-product-quantity-size']}>
+                                                    Size: L
+                                                </span>
+                                            </td>
+                                            <td className={styles['checkout-product-quantity']} aria-hidden="true">
+                                                x1
+                                            </td>
+                                            <td className={styles['checkout-price']}>
+                                                <span className={styles['checkout-product-price']}>1.390.000VNĐ</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className={styles['checkout-image']}>
+                                                <img
+                                                    src="https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg"
+                                                    alt="Sản phẩm 1"
+                                                    className={styles['checkout-img-responsive']}
+                                                    style={{ width: '100px', height: '100px' }}
+                                                />
+                                            </td>
+                                            <td className={styles['checkout-name']}>
+                                                <span className={styles['checkout-product-name']}>
+                                                    Nike Air Mercurial Blast
+                                                </span>
+                                                <br />
+                                                <span className={styles['checkout-product-quantity-size']}>
+                                                    Size: 41
+                                                </span>
+                                            </td>
+                                            <td className={styles['checkout-product-quantity']} aria-hidden="true">
+                                                x1
+                                            </td>
+                                            <td className={styles['checkout-price']}>
+                                                <span className={styles['checkout-product-price']}>349.000 VNĐ</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className={styles['checkout-discount']}>
+                                    <table className={styles['checkout-discount-table']}>
+                                        <tbody>
+                                            <tr className={styles['checkout-discount-tr']}>
+                                                <td>
+                                                    <input
+                                                        className={styles['checkout-field-input']}
+                                                        type="text"
+                                                        placeholder="Mã giảm giá"
+                                                        value={discountCode}
+                                                        onChange={handleDiscountCodeChange}
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <button
+                                                        type="submit"
+                                                        className={styles['checkout-field-input-btn']}
+                                                        onClick={handleDiscountCodeSubmit}
+                                                    >
+                                                        <span className={styles['checkout-btn-content']}>Xác nhận</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className={styles['checkout-sum']}>
+                                    <table className={styles['checkout-total']}>
+                                        <tbody>
+                                            <tr className={styles['checkout-total-subtotal']}>
+                                                <td className={styles['checkout-total-name']}>Tạm tính</td>
+                                                <td className={styles['checkout-total-price']}>
+                                                    <span className={styles['checkout-total-value']}>
+                                                        1.839.000 VNĐ
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr className={styles['checkout-total-shipping']}>
+                                                <td className={styles['checkout-total-name']}>Phí vận chuyển</td>
+                                                <td className={styles['checkout-total-price']}>
+                                                    <span className={styles['checkout-total-value']}>-</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className={styles['checkout-bot']}>
+                                    <table className={styles['checkout-footer-table']}>
+                                        <tbody>
+                                            <tr className={styles['checkout-total-footer']}>
+                                                <td className={styles['checkout-total-name payment-label']}>
+                                                    <span className={styles['checkout-payment']}>Tổng cộng: </span>
+                                                </td>
+                                                <td className={styles['checkout-total-name payment-due']}>
+                                                    {/* <span className={styles['checkout-payment-due-currency']}>VND</span> */}
+                                                    <span className={styles['checkout-payment-due-price']}>
+                                                        1.839.000 VNĐ
+                                                    </span>
+                                                    <span className={styles['checkout_version']}></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };

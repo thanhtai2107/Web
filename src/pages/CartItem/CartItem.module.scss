@@ -1,50 +1,43 @@
+/* CartItem.module.scss */
+
 .cartItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .productInfo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .name {
-    font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  .price {
-    font-size: 14px;
-    color: #888;
-    margin-right: 10px;
-  }
-  
-  .quantity {
-    font-size: 16px;
-    color: #888;
-    margin-right: 15px;
-  }
-  .quantityButton {
-    background-color: #ccc;
-    color: #000000;
-    border: none;
-    padding: 10px, 20px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .total {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .removeButton {
-    background-color: transparent;
-    border: none;
-    color: #888;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+}
+
+.quantityContainer button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.removeButton {
+  border: none;
+  background-color: transparent;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+.itemIndex {
+  font-weight: bold;
+  margin-right: 10px;
+}
