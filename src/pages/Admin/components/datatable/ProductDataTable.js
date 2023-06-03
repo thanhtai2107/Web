@@ -3,33 +3,43 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 import classNames from 'classnames/bind';
 import styles from '~/pages/Admin/components/datatable/DataTable.module.scss';
+import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 const cx = classNames.bind(styles);
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'name', headerName: 'Product name', width: 160 },
     {
-        field: 'address',
-        headerName: 'Address',
-        width: 90,
-    },
-    {
-        field: 'phone',
-        headerName: 'Phone',
-        width: 90,
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
+        field: 'discription',
+        headerName: 'Discription',
         width: 160,
+    },
+    {
+        field: 'price',
+        headerName: 'Price',
+        width: 120,
+    },
+    {
+        field: 'quantity',
+        headerName: 'Quantity',
+        width: 90,
+    },
+    {
+        field: 'sold',
+        headerName: 'Sold',
+        width: 90,
+    },
+    {
+        field: 'category',
+        headerName: 'Category',
+        description: 'This column has a value getter and is not sortable.',
+        width: 120,
         renderCell: (params) => {
             return (
                 <>
-                    <span>{params.row.lastName}</span>
-                    <p>{params.row.firstName}</p>
+                    <span>{params.row.category.name}</span>
                 </>
             );
         },
@@ -53,22 +63,20 @@ const columns: GridColDef[] = [
     },
 ];
 
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', address: 'Linh Trung', phone: '01232132' },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
 function ProductTable() {
+    const [product, setProduct] = useState([]);
+    useEffect(() => {
+        products();
+    }, []);
+    const products = async () => {
+        const result = await axios.get('http://localhost:8080/product/list');
+        console.log(result);
+        setProduct(result.data);
+    };
     return (
         <div className={cx('datatable')}>
             <DataGrid
-                rows={rows}
+                rows={product}
                 columns={columns}
                 initialState={{
                     pagination: {

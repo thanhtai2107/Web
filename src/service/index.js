@@ -8,3 +8,9 @@ export const getRole = () => {
     if (!decodeJwt) return [];
     return decodeJwt.authorities[0].authority;
 };
+
+export const getAuthConfig = () => ({
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+});
