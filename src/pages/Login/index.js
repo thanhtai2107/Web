@@ -22,8 +22,6 @@ const Login = () => {
             username: username,
             password: password,
         };
-
-        console.log(requestBody);
         fetch('http://localhost:8080/api/v1/authenticate', {
             headers: {
                 'Content-Type': 'application/json',
@@ -41,6 +39,7 @@ const Login = () => {
             .catch((message) => {
                 alert(message);
             });
+
         const role = getRole();
         console.log(role);
         if (role === 'USER') {

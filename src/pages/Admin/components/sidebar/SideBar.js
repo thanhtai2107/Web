@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from '~/pages/Admin/components/sidebar/SideBar.module.scss';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import {
     AccountCircle,
     Dashboard,
