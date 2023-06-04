@@ -15,10 +15,9 @@ import Mizuno from '~/pages/Product/GiayBongDa/Mizuno';
 import Nike from '~/pages/Product/GiayBongDa/Nike';
 import Adidas from '~/pages/Product/GiayBongDa/Adidas';
 import ProductDetail from '~/pages/ProductDetail';
-import BlogPage from '~/pages/BlogPage';
 import Equipment from '~/pages/Equipment';
 import Clothe from '~/pages/Clothe';
-
+import Blog from '~/pages/Blog';
 import Shoes from '~/pages/Product/Shoes';
 
 import { PrivateRoute } from './privateRouter';
@@ -27,11 +26,10 @@ import List from '~/pages/Admin/List/UserList';
 import NewUser from '~/pages/Admin/New/NewUser';
 import NewProduct from '~/pages/Admin/New/NewProduct';
 
-
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
-    { path: '/blog', component: BlogPage },
+    { path: '/blog', component: Blog },
     { path: '/login', component: Login },
 
     { path: '/admin', component: AdminHome, layout: null, private: PrivateRoute, role: 'ADMIN' },
@@ -55,7 +53,6 @@ const publicRoutes = [
     { path: '/clothe', component: Clothe },
 
     { path: '/shoes', component: Shoes },
-
 ];
 
 const privateRoutes = [];

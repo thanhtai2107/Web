@@ -11,7 +11,7 @@
 
 .loginContainer {
   /* Styles for the login container */
-  max-width: 400px;
+  max-width: 500px;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -52,6 +52,7 @@ input[type="password"] {
 
 .loginButton {
   /* Styles for the login button */
+  text-align: center;
   background-color: #0a9a73;
   color: #fff;
   padding: 8px 16px;
@@ -60,6 +61,7 @@ input[type="password"] {
   cursor: pointer;
   &:hover {
     background-color: #0a9a73;
+
   }
 }
 
@@ -67,13 +69,14 @@ input[type="password"] {
   /* Styles for the forgot password link */
   color: #0a9a73;
   text-decoration: none;
-  margin-right: 16px;
+  margin-right: 185px;
 }
 
 .registerLink {
   /* Styles for the register link */
   color: #0a9a73;
   text-decoration: none;
+
 }
 
 .socialLogin {
@@ -123,4 +126,12 @@ input[type="password"] {
   .gmailButton {
     /* Increase the size of the Gmail button */
     font-size: 35px;
+  }
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }

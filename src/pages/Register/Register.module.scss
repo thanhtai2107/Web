@@ -7,14 +7,14 @@
 }
 
 .registerContainer {
-  max-width: 400px;
+  width: 500px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .registerTitle {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -22,10 +22,12 @@
 .registerForm {
   display: flex;
   flex-direction: column;
+
 }
 
 .formGroup {
   margin-bottom: 10px;
+  max-width: 400px;
 }
 
 label {
@@ -38,32 +40,61 @@ input[type='email'] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 460px;
+  text-align: center;
 }
 
+// .registerButton {
+//   padding: 10px 30px;
+//   background-color: #0a9a73;
+//   color: #fff;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   text-align: center;
+// }
+
 .registerButton {
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: #0a9a73;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
 
 .loginLink {
   margin-top: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 .loginLink a {
   color: #0a9a73;
 }
 
-// element.style {
-// }
 .Login_loginForm__29SEC {
     display: flex;
     flex-direction: column;
 }
 * {
     box-sizing: border-box;
+}
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeInAnimation 1s forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
