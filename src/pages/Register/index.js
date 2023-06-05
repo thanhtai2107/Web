@@ -14,6 +14,7 @@ const Register = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
+
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -73,6 +74,7 @@ const Register = () => {
                     </div>
 
                     <div className={styles.formGroup}>
+
                         <label htmlFor="lastname">Họ:</label>
                         <input
                             type="text"
@@ -82,6 +84,7 @@ const Register = () => {
                         />
                     </div>
                     <div className={styles.formGroup}>
+
                         <label htmlFor="email">Email:</label>
                         <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
@@ -96,6 +99,7 @@ const Register = () => {
                         <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
                     </div>
                     <div className={styles.formGroup}>
+
                         <button type="submit" className={styles.registerButton}>
                             Đăng ký
                         </button>
@@ -103,6 +107,7 @@ const Register = () => {
                 </form>
                 <div className={styles.loginLink}>
                     <Link to="/login">Đăng nhập</Link>
+
                 </div>
             </div>
         </div>
