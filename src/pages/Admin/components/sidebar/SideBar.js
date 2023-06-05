@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from '~/pages/Admin/components/sidebar/SideBar.module.scss';
 import {
     AccountCircle,
+    Category,
     Dashboard,
     LibraryBooks,
     Logout,
@@ -10,6 +11,7 @@ import {
     Settings,
 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { logout } from '~/service';
 const cx = classNames.bind(styles);
 
 function SideBar() {
@@ -43,8 +45,14 @@ function SideBar() {
                     </li>
                     <li>
                         <LibraryBooks className={cx('icon')} />
-                        <Link to="/admin/product">
+                        <Link to="/admin/oder">
                             <span>Order</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Category className={cx('icon')} />
+                        <Link to="/admin/category">
+                            <span>Category</span>
                         </Link>
                     </li>
                     <p className={cx('title')}>Service</p>
@@ -58,7 +66,9 @@ function SideBar() {
                     </li>
                     <li>
                         <Logout className={cx('icon')} />
-                        <span>Logout</span>
+                        <Link to="/login">
+                            <span onClick={logout}>Logout</span>
+                        </Link>
                     </li>
                 </ul>
             </div>

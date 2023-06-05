@@ -3,57 +3,24 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 import classNames from 'classnames/bind';
 import styles from '~/pages/Admin/components/datatable/DataTable.module.scss';
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getAuthConfig } from '~/service';
 import { Button } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { getAuthConfig } from '~/service';
 const cx = classNames.bind(styles);
 
-function ProductTable() {
+function CategoryTable() {
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'name', headerName: 'Product name', width: 160 },
-        {
-            field: 'discription',
-            headerName: 'Discription',
-            width: 160,
-        },
-        {
-            field: 'price',
-            headerName: 'Price',
-            width: 120,
-        },
-        {
-            field: 'quantity',
-            headerName: 'Quantity',
-            width: 90,
-        },
-        {
-            field: 'sold',
-            headerName: 'Sold',
-            width: 90,
-        },
-        {
-            field: 'category',
-            headerName: 'Category',
-            description: 'This column has a value getter and is not sortable.',
-            width: 120,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <span>{params.row.category.name}</span>
-                    </>
-                );
-            },
-        },
+        { field: 'name', headerName: 'Category', width: 130 },
         {
             field: 'action',
             headerName: 'Action',
             description: 'Action',
             sortable: false,
-            width: 160,
+            width: 190,
             renderCell: (params) => {
                 return (
                     <>
@@ -81,28 +48,29 @@ function ProductTable() {
             },
         },
     ];
+
     const navigate = useNavigate();
-    const [product, setProduct] = useState([]);
+    const [category, setCategory] = useState([]);
     useEffect(() => {
-        products();
+        categorys();
     }, []);
-    const products = async () => {
-        const result = await axios.get('http://localhost:8080/product/list');
+    const categorys = async () => {
+        const result = await axios.get('http://localhost:8080/category/list', getAuthConfig());
         console.log(result);
-        setProduct(result.data);
+        setCategory(result.data);
     };
     const handleDelete = async (id) => {
-        const result = await axios.delete(`http://localhost:8080/api/v2/admin/product/delete/${id}`, getAuthConfig());
+        const result = await axios.delete(`http://localhost:8080/api/v2/admin/category/delete/${id}`, getAuthConfig());
         console.log(result);
-        products();
+        categorys();
     };
     const handleUpdate = (id) => {
-        navigate(`/admin/product/update/${id}`);
+        navigate(`/admin/category/update/${id}`);
     };
     return (
         <div className={cx('datatable')}>
             <DataGrid
-                rows={product}
+                rows={category}
                 columns={columns}
                 initialState={{
                     pagination: {
@@ -116,4 +84,4 @@ function ProductTable() {
     );
 }
 
-export default ProductTable;
+export default CategoryTable;

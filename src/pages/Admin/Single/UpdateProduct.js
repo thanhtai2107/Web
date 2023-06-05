@@ -1,74 +1,81 @@
 import classNames from 'classnames/bind';
-import styles from '~/pages/Admin/New/New.module.scss';
+import { useEffect, useState } from 'react';
+import styles from '~/pages/Admin/Single/Single.module.scss';
 import SideBar from '../components/sidebar/SideBar';
 import Navbar from '../components/navbar/Navbar';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { getAuthConfig } from '~/service';
-import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
-function NewProduct() {
+function UpdateProduct() {
     const navigate = useNavigate();
+    const { productId } = useParams();
     const [file, setFile] = useState('');
+    const [img, setImg] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
     const [categorys, setCategorys] = useState([]);
+    const [category, setCategory] = useState('');
     const [name, setName] = useState('');
     const [discription, setDiscription] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
 
-    useEffect(() => {
-        loadCategory();
-    }, []);
+    const loadProduct = async () => {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/v2/admin/product/${productId}`, getAuthConfig());
+            console.log(result.data);
+            setName(result.data.name);
+            setDiscription(result.data.discription);
+            setImg(result.data.image);
+            setPrice(result.data.price);
+            setQuantity(result.data.quantity);
+            setCategory(result.data.category.name);
+            setCategorySelected(result.data.category.name);
+        } catch (e) {
+            console.error('error', e);
+        }
+    };
     const loadCategory = async () => {
         const result = await axios.get('http://localhost:8080/category/list');
         setCategorys(result.data);
     };
+    useEffect(() => {
+        loadProduct();
+        loadCategory();
+    }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
+        formData.append('file', file);
         formData.append('name', name);
         formData.append('discription', discription);
         formData.append('price', price);
-        formData.append('file', file);
-        formData.append('category', categorySelected);
         formData.append('quantity', quantity);
-        setName('');
-        setDiscription('');
-        setFile('');
-        setCategorySelected('');
-        setPrice('');
-        setQuantity('');
+        formData.append('category', categorySelected);
+
         try {
-            const result = await axios.post('http://localhost:8080/api/v2/admin/product/add', formData, {
+            const result = await axios.put(`http://localhost:8080/api/v2/admin/product/update/${productId}`, formData, {
                 ...getAuthConfig(),
                 'Content-Type': 'multipart/form-data',
             });
-            console.log(result.data);
+            console.log(result);
             navigate('/admin/product');
         } catch (e) {
-            console.error(' error create product ', e);
+            console.error('error update', e);
         }
     };
     return (
-        <div className={cx('new')}>
+        <div className={cx('update')}>
             <SideBar />
-            <div className={cx('newContainer')}>
+            <div className={cx('updateContainer')}>
                 <Navbar />
                 <div className={cx('top')}>
-                    <h1>Add new Product</h1>
+                    <h1>Update Product</h1>
                 </div>
                 <div className={cx('bottom')}>
                     <div className={cx('left')}>
-                        <img
-                            src={
-                                file
-                                    ? URL.createObjectURL(file)
-                                    : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-                            }
-                            alt=""
-                        />
+                        <img src={img} alt="" />
                     </div>
                     <div className={cx('right')}>
                         <form onSubmit={handleSubmit}>
@@ -109,15 +116,19 @@ function NewProduct() {
                                     value={quantity}
                                     onChange={(e) => setQuantity(e.target.value)}
                                     type="text"
-                                    placeholder="Email"
+                                    placeholder="Quantity"
                                 />
                             </div>
                             <div className={cx('formInput')}>
                                 <label>Category</label>
-                                <select onChange={(e) => setCategorySelected(e.target.value)}>
+                                <select defaultChecked={category} onChange={(e) => setCategorySelected(e.target.value)}>
                                     <option>--Select Category--</option>
                                     {categorys.map((category, index) => {
-                                        return <option key={index}>{category.name}</option>;
+                                        return (
+                                            <option key={index} selected={category === category ? 'selected' : ''}>
+                                                {category.name}
+                                            </option>
+                                        );
                                     })}
                                 </select>
                             </div>
@@ -132,4 +143,4 @@ function NewProduct() {
     );
 }
 
-export default NewProduct;
+export default UpdateProduct;

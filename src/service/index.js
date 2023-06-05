@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import { redirect } from 'react-router-dom';
 
 export const getRole = () => {
     const jwt = localStorage.getItem('token');
@@ -14,3 +15,7 @@ export const getAuthConfig = () => ({
         Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
 });
+
+export const logout = () => {
+    localStorage.removeItem('token');
+};
