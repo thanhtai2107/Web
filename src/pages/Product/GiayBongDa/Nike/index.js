@@ -1,62 +1,63 @@
-// import React from 'react';
+// import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 // import styles from './Nike.module.scss';
 // import { Button } from '@mui/material';
+// import axios from 'axios';
 
 // const formatCurrency = (value) => {
 //     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 // };
 
 // const Nike = () => {
-//     // Danh sách sản phẩm giày Nike
-//     const products = [
-//         {
-//             id: 1,
-//             name: 'Nike Air Mercurial Blast',
-//             imageUrl:
-//                 'https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg',
-//             price: 599000,
-//             salePrice: 479000,
-//         },
-//         {
-//             id: 2,
-//             name: 'Nike Mercurial Superfly',
-//             imageUrl:
-//                 'https://product.hstatic.net/1000061481/product/ed85f38ac15d4fcfbd6477f533aba3a9_a0cdb214bc67458dbe1fab058166e107_1024x1024.jpeg',
-//             price: 479000,
-//             salePrice: 349000,
-//         },
-//         {
-//             id: 3,
-//             name: 'Nike Tiempo Legend',
-//             imageUrl:
-//                 'https://product.hstatic.net/1000061481/product/anh_sp_add_web2312_2-02-02-02-02-01-01-01-01-01-01-01-02_6b2632dda91f45a9a6f4529ab0f9a028_1024x1024.jpg',
-//             price: 899000,
-//             salePrice: 699000,
-//         },
-//         // Thêm các sản phẩm khác tương tự
-//     ];
+//     const [products, setProducts] = useState([]);
+//     const [category, setCategory] = useState([]);
+//     const [nike, setNike] = useState([]);
+//     const [cartItems, setCartItems] = useState([]);
+
+//     useEffect(() => {
+//         loadCategory();
+//     }, []);
+
+//     const loadCategory = async () => {
+//         try {
+//             const result = await axios.get('http://localhost:8080/category/list');
+//             setCategory(result.data);
+//         } catch (error) {
+//             console.log('Error fetching category:', error);
+//         }
+//     };
+
+//     useEffect(() => {
+//         if (category.length > 0) {
+//             setNike(category[2].products);
+//         }
+//     }, [category]);
+
+//     const addToCart = (products) => {
+//         setCartItems([...cartItems, products]);
+//     };
+//     console.log(cartItems);
 
 //     return (
 //         <div className={styles.productsContainer}>
-//             <h2>Giày bóng đá Nike</h2>
+//             <h2>Nike</h2>
 //             <div className={styles.productList}>
-//                 {products.map((product) => (
-//                     <div key={product.id} className={styles.productItem}>
-//                         <Link to={`/product/${product.id}`}>
-//                             <img src={product.imageUrl} alt={product.name} className={styles.productImage} />
-//                             <p className={styles.productName}>{product.name}</p>
-//                             <p className={styles.productPrice}>Giá: {formatCurrency(product.price)} VNĐ</p>
-//                             {product.salePrice && (
+//                 {nike.map((products) => (
+//                     <div key={products.id} className={styles.productItem}>
+//                         <Link to={`/product/${products.id}`}>
+//                             <img src={products.image} alt={products.name} className={styles.productImage} />
+//                             <p className={styles.productName}>{products.name}</p>
+//                             <p className={styles.productPrice}>Giá: {formatCurrency(products.price)} VNĐ</p>
+//                             {products.salePrice && (
 //                                 <p className={styles.productSalePrice}>
-//                                     Giá khuyến mãi: {formatCurrency(product.salePrice)} VNĐ
+//                                     Giá khuyến mãi: {formatCurrency(products.salePrice)} VNĐ
 //                                 </p>
 //                             )}
 //                         </Link>
 //                         <div className={styles.productButtons}>
-//                             <Link to="/cart">
-//                                 <Button variant="contained">Thêm vào giỏ hàng</Button>
-//                             </Link>
+//                             <Button variant="contained" onClick={() => addToCart(products)}>
+//                                 Thêm vào giỏ hàng
+//                             </Button>
 //                             <Link to="/checkout">
 //                                 <Button variant="contained">Mua ngay</Button>
 //                             </Link>
@@ -70,10 +71,13 @@
 
 // export default Nike;
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Nike.module.scss';
-import { Button } from '@mui/material';
+import { Button, Snackbar } from '@mui/material';
+import axios from 'axios';
+import { CartContext } from '~/pages/CartContext';
+import { getAuthConfig } from '~/service';
 
 const formatCurrency = (value) => {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -81,29 +85,62 @@ const formatCurrency = (value) => {
 
 const Nike = () => {
     const [products, setProducts] = useState([]);
+    const [category, setCategory] = useState([]);
+    const [nike, setNike] = useState([]);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const { cartItems, setCartItems } = useContext(CartContext);
+    const quantity = 1;
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        fetchProducts();
+        loadCategory();
     }, []);
 
-    const fetchProducts = async () => {
+    const loadCategory = async () => {
         try {
-            const response = await fetch('/product/list'); //API
-            const data = await response.json();
-            setProducts(data);
+            const result = await axios.get('http://localhost:8080/category/list');
+            setCategory(result.data);
+            setNike(result.data[2].products);
         } catch (error) {
-            console.error('Error fetching products:', error);
+            console.log('Error fetching category:', error);
         }
+    };
+
+    useEffect(() => {
+        if (category.length > 0) {
+            setNike(category[2].products);
+        }
+    }, [category]);
+
+    const handleAddToCart = async (id) => {
+        // const updatedCartItems = [...cartItems, product];
+        // setCartItems(updatedCartItems);
+        // setSuccessMessage(`Đã thêm sản phẩm "${product.name}" vào giỏ hàng`);
+        // setOpenSnackbar(true);
+        // console.log(cartItems);
+        const formData = new FormData();
+        formData.append('productId', id);
+        formData.append('userId', userId);
+        formData.append('quantity', quantity);
+        const result = await axios('http://localhost:8080/api/cart/add', formData, {
+            ...getAuthConfig(),
+            'Content-Type': 'multipart/form-data',
+        });
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     return (
         <div className={styles.productsContainer}>
             <h2>Nike</h2>
             <div className={styles.productList}>
-                {products.map((product) => (
+                {nike.map((product) => (
                     <div key={product.id} className={styles.productItem}>
                         <Link to={`/product/${product.id}`}>
-                            <img src={product.imageUrl} alt={product.name} className={styles.productImage} />
+                            <img src={product.image} alt={product.name} className={styles.productImage} />
                             <p className={styles.productName}>{product.name}</p>
                             <p className={styles.productPrice}>Giá: {formatCurrency(product.price)} VNĐ</p>
                             {product.salePrice && (
@@ -113,16 +150,23 @@ const Nike = () => {
                             )}
                         </Link>
                         <div className={styles.productButtons}>
-                            <Link to="/cart">
-                                <Button variant="contained">Thêm vào giỏ hàng</Button>
-                            </Link>
+                            <Button variant="contained" onClick={() => handleAddToCart(product.id)}>
+                                Thêm vào giỏ hàng
+                            </Button>
                             <Link to="/checkout">
+                                {' '}
                                 <Button variant="contained">Mua ngay</Button>
                             </Link>
                         </div>
                     </div>
                 ))}
             </div>
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackbar}
+                message={successMessage}
+            />
         </div>
     );
 };

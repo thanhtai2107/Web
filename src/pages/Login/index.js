@@ -32,9 +32,10 @@ const Login = () => {
             .then((response) => Promise.all([response.json()]))
             .then(([body]) => {
                 console.log(body.token);
-                console.log(body.user);
+                console.log(body.user.id);
 
                 localStorage.setItem('token', body.token);
+                localStorage.setItem('userId', body.user.id);
             })
             .catch((message) => {
                 alert(message);

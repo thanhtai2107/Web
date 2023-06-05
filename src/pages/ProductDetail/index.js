@@ -37,21 +37,21 @@ const ProductDetail = () => {
                 <div className={styles['row']}>
                     <div className={styles['col-2']}>
                         <img
-                            src="https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg"
+                            src="https://product.hstatic.net/1000061481/product/ed85f38ac15d4fcfbd6477f533aba3a9_a0cdb214bc67458dbe1fab058166e107_1024x1024.jpeg"
                             width="80%"
                             id="1"
                             alt="Product"
                         />
                     </div>
                     <div className={styles['col-2']} style={{ textAlign: 'left' }}>
-                        <h2>Giày bóng đá Nike Tiempo Legend 9</h2>
+                        <h2>NIKE AIR ZOOM MERCURIAL SUPERFLY ELITE 9 FG XXV</h2>
                         <h4>
-                            Giá: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(599000)}
+                            Giá: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(799000)}
                         </h4>
                         <h4>
                             <span className={styles['promo-price']}>
                                 Giá khuyến mãi:{' '}
-                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(479000)}
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(619000)}
                             </span>
                         </h4>{' '}
                         {/* Hiển thị giá khuyến mãi */}

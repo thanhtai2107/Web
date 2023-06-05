@@ -21,9 +21,9 @@ const ForgotPassword = () => {
     return (
         <div className={styles.forgotPassword}>
             <div className={styles.forgotPasswordContainer}>
-                <h2 className={styles.forgotPasswordTitle}>Quên mật khẩu?</h2>
+                <h2 className={styles.forgotPasswordTitle}>Quên mật khẩu.</h2>
                 {resetSuccess ? ( // Kiểm tra trạng thái resetSuccess
-                    <p className={styles.resetSuccessMessage}>Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại!.</p>
+                    <p className={styles.resetSuccessMessage}> Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại!.</p>
                 ) : (
                     <form className={styles.forgotPasswordForm} onSubmit={handleResetPassword}>
                         <div className={styles.formGroup}>

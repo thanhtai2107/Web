@@ -106,32 +106,7 @@ const Checkout = () => {
                                         <tr>
                                             <td className={styles['checkout-image']}>
                                                 <img
-                                                    className={styles['checkout-product-image']}
-                                                    src="https://product.hstatic.net/1000061481/product/screenshot_99_a1073bfe6c18453fbacad7ee9f3eb9d1_1024x1024.png"
-                                                    alt="Sản phẩm 1"
-                                                    style={{ width: '100px', height: '100px' }}
-                                                />
-                                            </td>
-                                            <td className={styles['checkout-name']}>
-                                                <span className={styles['checkout-product-name']}>
-                                                    GRANDSPORT ÁO THI ĐẤU ĐT VIỆT NAM SÂN NHÀ 2023
-                                                </span>
-                                                <br />
-                                                <span className={styles['checkout-product-quantity-size']}>
-                                                    Size: L
-                                                </span>
-                                            </td>
-                                            <td className={styles['checkout-product-quantity']} aria-hidden="true">
-                                                x1
-                                            </td>
-                                            <td className={styles['checkout-price']}>
-                                                <span className={styles['checkout-product-price']}>1.390.000VNĐ</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className={styles['checkout-image']}>
-                                                <img
-                                                    src="https://product.hstatic.net/1000061481/product/1-01-01-01-02-01-01-01-01-02-01-01-01-01-01-01-01-01-01-02-01-02-02-01_81bde57062ae4825add0932d32f94842_1024x1024.jpg"
+                                                    src="https://product.hstatic.net/1000061481/product/ed85f38ac15d4fcfbd6477f533aba3a9_a0cdb214bc67458dbe1fab058166e107_1024x1024.jpeg"
                                                     alt="Sản phẩm 1"
                                                     className={styles['checkout-img-responsive']}
                                                     style={{ width: '100px', height: '100px' }}
@@ -139,7 +114,7 @@ const Checkout = () => {
                                             </td>
                                             <td className={styles['checkout-name']}>
                                                 <span className={styles['checkout-product-name']}>
-                                                    Nike Air Mercurial Blast
+                                                    NIKE AIR ZOOM MERCURIAL SUPERFLY ELITE 9 FG XXV
                                                 </span>
                                                 <br />
                                                 <span className={styles['checkout-product-quantity-size']}>
@@ -185,17 +160,20 @@ const Checkout = () => {
                                     <table className={styles['checkout-total']}>
                                         <tbody>
                                             <tr className={styles['checkout-total-subtotal']}>
-                                                <td className={styles['checkout-total-name']}>Tạm tính</td>
+                                                <td className={styles['checkout-total-name']}>Tạm tính: 619.000 VNĐ</td>
                                                 <td className={styles['checkout-total-price']}>
-                                                    <span className={styles['checkout-total-value']}>
-                                                        1.839.000 VNĐ
-                                                    </span>
+                                                    {/* <span className={styles['checkout-total-value']}>619.000 VNĐ</span> */}
                                                 </td>
                                             </tr>
                                             <tr className={styles['checkout-total-shipping']}>
-                                                <td className={styles['checkout-total-name']}>Phí vận chuyển</td>
+                                                <td className={styles['checkout-total-name']}>
+                                                    Phí vận chuyển: Miễn phí
+                                                </td>
+                                                {/* <td className={styles['checkout-total-price']}></td> */}
+                                                {/* <span className={styles['checkout-total-value']}>15.000 VNĐ</span> */}
+
                                                 <td className={styles['checkout-total-price']}>
-                                                    <span className={styles['checkout-total-value']}>-</span>
+                                                    {/* <span className={styles['checkout-total-value']}>-</span> */}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -211,7 +189,7 @@ const Checkout = () => {
                                                 <td className={styles['checkout-total-name payment-due']}>
                                                     {/* <span className={styles['checkout-payment-due-currency']}>VND</span> */}
                                                     <span className={styles['checkout-payment-due-price']}>
-                                                        1.839.000 VNĐ
+                                                        619.000 VNĐ
                                                     </span>
                                                     <span className={styles['checkout_version']}></span>
                                                 </td>

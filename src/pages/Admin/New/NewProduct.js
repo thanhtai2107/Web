@@ -111,7 +111,7 @@ function NewProduct() {
                                     value={quantity}
                                     onChange={(e) => setQuantity(e.target.value)}
                                     type="text"
-                                    placeholder="Email"
+                                    placeholder="Quantity"
                                 />
                             </div>
                             <div className={cx('formInput')}>

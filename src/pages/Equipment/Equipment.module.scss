@@ -1,55 +1,52 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.productItem {
+  width: 33%; /* Để hiển thị khoảng 3 sản phẩm trên mỗi hàng */
+  margin-bottom: 20px;
+  padding-left: 70px;
+}
+
+.productName {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.productPrice {
+  color: #333;
+}
+
+.productSalePrice {
+  color: #ff0000;
+  font-weight: bold;
+}
+.productImage {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
   }
-  .productList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .productItem {
-    width: 33%; /* Để hiển thị khoảng 3 sản phẩm trên mỗi hàng */
-    margin-bottom: 20px;
-    padding-left: 70px;
-  }
-  
-  .productName {
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .productPrice {
-    color: #333;
-  }
-  
-  .productSalePrice {
-    color: #ff0000;
-    font-weight: bold;
-  }
-  .productImage {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      margin-bottom: 10px;
-      // padding-left: 100px;
-      // padding-right: 10px;
+
+.productButtons {
+  margin-top: 10px;
+
+  button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #0a9a73;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e0e0e0;
     }
-  
-  .productButtons {
-    margin-top: 10px;
-  
-    button {
-      margin-right: 10px;
-      padding: 5px 10px;
-      background-color: #0a9a73;
-      border: none;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #e0e0e0;
-      }
-    }
-  
-  
   }
-  
+
+
+}

@@ -1,4 +1,71 @@
 .blog {
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .blog header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .blog h1 {
+    font-size: 32px;
+    color: #333;
+  }
+  
+  .blog main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .blog footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .blog footer p {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .blog article {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .blog img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .blog p {
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .blog .date-time {
+    display: flex;
+    align-items: center;
+    color: #999;
+    margin-top: 10px;
+  }
+  
+  .blog .date {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  .blog {
     // Các kiểu dáng và thiết lập khác cho component Blog
   
     main {
@@ -50,4 +117,5 @@
   
     // Các kiểu dáng và thiết lập khác cho component Blog
   }
+  
   
